@@ -1,16 +1,18 @@
-package io.happycoding.helloworld;
+package com.game_assignment.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+
 
 public class EndScreen extends ScreenAdapter {
 
-    HelloWorldGame game;
-
-    public EndScreen(HelloWorldGame game) {
+    Game_Assignment game;
+    BitmapFont font = new BitmapFont();
+    public EndScreen(Game_Assignment game) {
         this.game = game;
     }
 
@@ -22,7 +24,7 @@ public class EndScreen extends ScreenAdapter {
             public boolean keyDown(int keyCode) {
 
                 if (keyCode == Input.Keys.ENTER) {
-                    game.setScreen(new TitleScreen(game));
+                    game.setScreen(new GameScreen(game));
                 }
 
                 return true;
@@ -36,8 +38,8 @@ public class EndScreen extends ScreenAdapter {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         game.batch.begin();
-        game.font.draw(game.batch, "You win!", Gdx.graphics.getWidth() * .25f, Gdx.graphics.getHeight() * .75f);
-        game.font.draw(game.batch, "Press enter to restart.", Gdx.graphics.getWidth() * .25f, Gdx.graphics.getHeight() * .25f);
+        font.draw(game.batch, "You win!", Gdx.graphics.getWidth() * .25f, Gdx.graphics.getHeight() * .75f);
+        font.draw(game.batch, "Press enter to restart.", Gdx.graphics.getWidth() * .25f, Gdx.graphics.getHeight() * .25f);
         game.batch.end();
 
     }
