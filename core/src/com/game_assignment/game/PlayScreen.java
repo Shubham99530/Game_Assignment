@@ -9,10 +9,13 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 // import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.Texture;
 
 public class PlayScreen extends ScreenAdapter {
 
     Game_Assignment game;
+
+    
     BitmapFont font = new BitmapFont();
     public PlayScreen(Game_Assignment game) {
         this.game = game;
@@ -36,10 +39,7 @@ public class PlayScreen extends ScreenAdapter {
         Gdx.gl.glClearColor(0, .25f, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         game.batch.begin();
-        // font.draw(game.batch, "MAIN PAGE!", Gdx.graphics.getWidth() * .25f, Gdx.graphics.getHeight() * .75f);
-        // font.draw(game.batch, "Resume game", Gdx.graphics.getWidth() * .25f, Gdx.graphics.getHeight() * .5f);
-        // font.draw(game.batch, "New game", Gdx.graphics.getWidth() * .25f, Gdx.graphics.getHeight() * .25f);
-        font.draw(game.batch, "Exit game", Gdx.graphics.getWidth() * .25f, Gdx.graphics.getHeight() * .10f);
+        game.font.draw(game.batch , "Select your tank " , 100 , 100);
         game.batch.end();
     }
 

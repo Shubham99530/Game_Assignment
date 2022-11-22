@@ -16,7 +16,8 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 public class Game_Assignment extends Game {
 
 	SpriteBatch batch;
-	Texture img;
+	Texture img,tank1,tank2;
+	Texture tank3;
 
 	ShapeRenderer shapeRenderer;
 	BitmapFont font ;
@@ -24,6 +25,9 @@ public class Game_Assignment extends Game {
 	public void create () {
         batch = new SpriteBatch();
 		img = new Texture("Game Over.jpg");
+		tank1=new Texture("Blazer.jpg");
+        tank2 = new Texture("helios.jpg");
+        tank3 = new Texture("Mark 1.jpg");
         shapeRenderer = new ShapeRenderer();
         setScreen(new GameScreen(this));
     }

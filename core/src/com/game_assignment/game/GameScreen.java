@@ -38,7 +38,7 @@ public class GameScreen extends ScreenAdapter {
             public boolean touchDown(int x, int y, int pointer, int button) {
                 int renderY = Gdx.graphics.getHeight() - y;
                 if (Vector2.dst(x_newgame, y_newgame, x, renderY) < touch_distance) {
-                    game.setScreen(new PlayScreen(game));
+                    game.setScreen(new TankSelectionScreen(game));
                     p=true;
                     return true;
                 }
@@ -64,7 +64,7 @@ public class GameScreen extends ScreenAdapter {
     @Override
     public void render(float delta) {
 
-        Gdx.gl.glClearColor(251, 0, 0, 1);
+        Gdx.gl.glClearColor(.1f, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         game.batch.begin();
         game.batch.draw(game.img, -150, 10);

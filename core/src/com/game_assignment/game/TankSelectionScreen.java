@@ -5,19 +5,25 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
+// import com.badlogic.gdx.graphics.Texture;
 
-public class ResumeScreen extends ScreenAdapter {
+public class TankSelectionScreen extends ScreenAdapter{
 
     Game_Assignment game;
+    // Texture tank1,tank2,tank3;
 
-    public ResumeScreen(Game_Assignment game)
+
+
+    public TankSelectionScreen(Game_Assignment game)
     {
-        this.game  = game;
+        this.game = game;
+        // this.tank1=new Texture("Blazer.jpg");
+        // this.tank2 = new Texture("helios.jpg");
+        // this.tank3 = new Texture("Mark1.jpg");
     }
 
     @Override
-    public void show()
-    {
+    public void show(){
         Gdx.input.setInputProcessor(new InputAdapter() {
             @Override
             public boolean keyDown(int keyCode) {
@@ -32,15 +38,16 @@ public class ResumeScreen extends ScreenAdapter {
     @Override
     public void render(float delta)
     {
-        Gdx.gl.glClearColor(.25f, 0, 1, 1);
+        Gdx.gl.glClearColor(.25f, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         game.batch.begin();
+        game.batch.draw(game.tank1 , 0, 100);
+        game.batch.draw(game.tank2, 300 , 100);
+        game.batch.draw(game.tank3, 600 , 100);
 
-        game.font.draw(game.batch , "Select the Saved State : ", 50 , 500);
-        game.font.draw(game.batch, "\t 1) Saved State 1" , 100 , 400);
-        game.font.draw(game.batch, "\t 2) Saved State 2" , 100 , 300);
-        game.font.draw(game.batch, "\t 3) Saved State 3" , 100 , 200);
-        game.font.draw(game.batch, "Press Space bar to return", 100, 100);
+        game.font.draw(game.batch , "Select your tank " , 100 , 50);
+        game.font.draw(game.batch , "Press Space to return " , 100 , 20);
+
         game.batch.end();
     }
 
