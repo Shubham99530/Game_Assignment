@@ -39,7 +39,7 @@ public class PlayScreen extends ScreenAdapter {
         // font.draw(game.batch, "MAIN PAGE!", Gdx.graphics.getWidth() * .25f, Gdx.graphics.getHeight() * .75f);
         // font.draw(game.batch, "Resume game", Gdx.graphics.getWidth() * .25f, Gdx.graphics.getHeight() * .5f);
         // font.draw(game.batch, "New game", Gdx.graphics.getWidth() * .25f, Gdx.graphics.getHeight() * .25f);
-        font.draw(game.batch, "Exit game", Gdx.graphics.getWidth() * .25f, Gdx.graphics.getHeight() * .50f);
+        font.draw(game.batch, "Exit game", Gdx.graphics.getWidth() * .25f, Gdx.graphics.getHeight() * .10f);
         game.batch.end();
     }
 
