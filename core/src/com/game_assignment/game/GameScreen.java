@@ -67,7 +67,7 @@ public class GameScreen extends ScreenAdapter {
         Gdx.gl.glClearColor(.1f, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         game.batch.begin();
-        game.batch.draw(game.img, -150, 10);
+        game.batch.draw(game.img, -50, 10);
         game.font = new BitmapFont();
 
         // Game starting Screen

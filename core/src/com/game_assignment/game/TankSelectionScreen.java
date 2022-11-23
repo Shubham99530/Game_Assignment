@@ -41,9 +41,9 @@ public class TankSelectionScreen extends ScreenAdapter{
         Gdx.gl.glClearColor(.25f, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         game.batch.begin();
-        game.batch.draw(game.tank1 , 0, 100);
-        game.batch.draw(game.tank2, 300 , 100);
-        game.batch.draw(game.tank3, 600 , 100);
+        game.batch.draw(game.tank1 , 30, 100);
+        game.batch.draw(game.tank2, 330 , 100);
+        game.batch.draw(game.tank3, 630 , 100);
 
         game.font.draw(game.batch , "Select your tank " , 100 , 50);
         game.font.draw(game.batch , "Press Space to return " , 100 , 20);
