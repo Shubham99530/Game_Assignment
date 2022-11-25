@@ -34,7 +34,7 @@ public class PauseScreen extends ScreenAdapter{
                 else if((keyCode == Input.Keys.NUM_2) || (keyCode == Input.Keys.NUMPAD_2))
                 {
 //                    game.font.draw(game.batch,"state saved" , 200,200);
-                    game.setScreen(new PlayScreen(game,tank));
+                    game.setScreen(new PlayScreen(game,tankA,tankB));
                 }
 
                 else if((keyCode == Input.Keys.NUM_3) || (keyCode == Input.Keys.NUMPAD_3))

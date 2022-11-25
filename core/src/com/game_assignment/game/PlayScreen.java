@@ -86,11 +86,11 @@ public class PlayScreen extends ScreenAdapter {
             tankA_Y+=3;
         }
         if(Gdx.input.isKeyPressed(Input.Keys.A)){
-            tank_X-=3;
+            tankB_X-=3;
         }
 
         else if(Gdx.input.isKeyPressed(Input.Keys.D)){
-            tank_X+=3;
+            tankB_Y+=3;
         }
         game.font.draw(game.batch , "Start fight " , 100 , 400);
         game.batch.end();
