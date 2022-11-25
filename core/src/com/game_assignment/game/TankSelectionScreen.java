@@ -4,20 +4,24 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.ScreenAdapter;
-import com.badlogic.gdx.ai.btree.decorator.Random;
+// import com.badlogic.gdx.ai.btree.decorator.Random;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.MathUtils;
 
 public class TankSelectionScreen extends ScreenAdapter{
 
     Game_Assignment game;
     // Texture tank1,tank2,tank3;
 
-    Texture tanklist[];
+    // Texture tanklist[];
+
+    // Random rand;
 
     public TankSelectionScreen(Game_Assignment game)
     {
         this.game = game;
+        // this.rand= new Random();
         // this.tank1=new Texture("Blazer.jpg");
         // this.tank2 = new Texture("helios.jpg");
         // this.tank3 = new Texture("Mark1.jpg");
@@ -77,8 +81,7 @@ public class TankSelectionScreen extends ScreenAdapter{
     }
 
     public Texture getTank() {
-        Random rand = new Random();
-        int index = rand.nextInt(tanklist.length);
-        return tanklist[index];
+        int index = MathUtils.random(2);
+        return game.tanklist[index];
     }
 }

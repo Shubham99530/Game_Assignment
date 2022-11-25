@@ -18,8 +18,8 @@ public class Game_Assignment extends Game {
 	SpriteBatch batch;
 	Texture img,tank1,tank2;
 	Texture tank3;
-
-	Texture tank1_player , tank2_player, tank3_player;
+	Texture[] tanklist;
+	Texture tank1_player , tank2_player, tank3_player , tank1_player_new, tank2_player_new,tank3_player_new;
 	ShapeRenderer shapeRenderer;
 	BitmapFont font ;
 	@Override
@@ -32,7 +32,12 @@ public class Game_Assignment extends Game {
 		tank1_player = new Texture("blazer_player.jpg");
 		tank2_player = new Texture("helios_player.jpg");
 		tank3_player = new Texture("Mark_1_player.jpg");
+		tank1_player_new = new Texture("blazer_player_new.jpg");
+		tank2_player_new = new Texture("helios_player_new.jpg");
+		tank3_player_new = new Texture("Mark_1_player_new.jpg");
+//		healthbar= new Texture("healthbar.jpg");
         shapeRenderer = new ShapeRenderer();
+		tanklist = new Texture[]{tank1_player_new, tank2_player_new, tank3_player_new};
         setScreen(new GameScreen(this));
     }
 	
