@@ -19,6 +19,7 @@ public class Game_Assignment extends Game {
 	Texture img,tank1,tank2;
 	Texture tank3;
 
+	Texture tank1_player , tank2_player, tank3_player;
 	ShapeRenderer shapeRenderer;
 	BitmapFont font ;
 	@Override
@@ -28,6 +29,9 @@ public class Game_Assignment extends Game {
 		tank1=new Texture("Blazer.jpg");
         tank2 = new Texture("helios.jpg");
         tank3 = new Texture("Mark 1.jpg");
+		tank1_player = new Texture("blazer_player.jpg");
+		tank2_player = new Texture("helios_player.jpg");
+		tank3_player = new Texture("Mark_1_player.jpg");
         shapeRenderer = new ShapeRenderer();
         setScreen(new GameScreen(this));
     }

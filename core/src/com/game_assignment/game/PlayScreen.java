@@ -4,6 +4,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 // import com.badlogic.gdx.Input;
 // import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.ScreenAdapter;
@@ -11,14 +14,28 @@ import com.badlogic.gdx.graphics.GL20;
 // import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.Texture;
 
+import java.util.Random;
+
 public class PlayScreen extends ScreenAdapter {
 
     Game_Assignment game;
+    // ShapeRenderer shapeRenderer;
+    Sprite sprite;
+    Texture tankA, tankB;
 
-    
+    // tankB 
+//    Texture tanklist[];
+    float tankA_X =20  ;
+    float tankA_Y = 65 ;
+
+    float tankB_X=900-tankA_X;
+    float tankB_Y= 480- tankA_Y;
+
     BitmapFont font = new BitmapFont();
-    public PlayScreen(Game_Assignment game) {
+    public PlayScreen(Game_Assignment game , Texture tex ,Texture tankB) {
         this.game = game;
+        this.tankA= tex;
+        this.tankB=tankB;
     }
 
     @Override
@@ -27,8 +44,18 @@ public class PlayScreen extends ScreenAdapter {
             @Override
             public boolean keyDown(int keyCode) {
                 if (keyCode == Input.Keys.SPACE) {
-                    game.setScreen(new GameScreen(game));
+                    game.setScreen(new PauseScreen(game,tankA,tankB));
                 }
+
+//                if(keyCode == Input.Keys.D)
+//                {
+//                    tank_X+=3;
+//                }
+//
+//                if (keyCode == Input.Keys.A)
+//                {
+//                    tank_X-=3;
+//                }
                 return true;
             }
         });
@@ -36,12 +63,41 @@ public class PlayScreen extends ScreenAdapter {
 
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(0, .25f, 0, 1);
+        Gdx.gl.glClearColor(0.150f, 0.2f, 255f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         game.batch.begin();
-        game.font.draw(game.batch , "Select your tank " , 100 , 100);
+
+
+        game.shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+        game.shapeRenderer.setColor(0, 1, 0, 1);
+        game.shapeRenderer.rect(0, 0, 900, 120);
+
+        game.batch.draw(tankA,tankA_X ,tankA_Y);
+
+        sprite  = new Sprite(tankB);
+        sprite.flip(true,false);
+
+        game.batch.draw(tankB,tankB_X,tankB_Y);
+        if(Gdx.input.isKeyPressed(Input.Keys.A)){
+            tankA_X-=3;
+        }
+
+        else if(Gdx.input.isKeyPressed(Input.Keys.D)){
+            tankA_Y+=3;
+        }
+        if(Gdx.input.isKeyPressed(Input.Keys.A)){
+            tank_X-=3;
+        }
+
+        else if(Gdx.input.isKeyPressed(Input.Keys.D)){
+            tank_X+=3;
+        }
+        game.font.draw(game.batch , "Start fight " , 100 , 400);
         game.batch.end();
+        game.shapeRenderer.end();
     }
+
+    
 
     @Override
     public void hide(){
