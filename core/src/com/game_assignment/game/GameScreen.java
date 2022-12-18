@@ -58,7 +58,7 @@ public class GameScreen extends ScreenAdapter {
                 return false;
             }
         });
-        
+
     }
 
     @Override
