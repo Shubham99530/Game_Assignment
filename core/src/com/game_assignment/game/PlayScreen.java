@@ -3,18 +3,13 @@ package com.game_assignment.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
+import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
- import com.badlogic.gdx.Input;
- import com.badlogic.gdx.InputAdapter;
-import com.badlogic.gdx.ScreenAdapter;
-import com.badlogic.gdx.graphics.GL20;
- import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.Texture;
-
-import java.util.Random;
+import com.badlogic.gdx.ApplicationAdapter ;
 
 public class PlayScreen extends ScreenAdapter {
 
@@ -50,15 +45,6 @@ public class PlayScreen extends ScreenAdapter {
                     game.setScreen(new PauseScreen(game,tankA,tankB));
                 }
 
-//                if(keyCode == Input.Keys.D)
-//                {
-//                    tank_X+=3;
-//                }
-//
-//                if (keyCode == Input.Keys.A)
-//                {
-//                    tank_X-=3;
-//                }
                 return true;
             }
         });
@@ -78,9 +64,6 @@ public class PlayScreen extends ScreenAdapter {
         game.shapeRenderer.rect(hA, 400, 200 ,10);
         game.shapeRenderer.rect(hb,400,200,10);
         game.batch.draw(tankA,tankA_X ,tankA_Y);
-//        game.batch.draw(game.healthbar, tankA_X ,
-        // sprite.flip(true,false);
-        // sprite.draw(game.batch,tankB_Y);
         game.batch.draw(tankB,tankB_X,tankB_Y);
         if(Gdx.input.isKeyPressed(Input.Keys.A)){
             tankA_X-=3;
@@ -108,4 +91,10 @@ public class PlayScreen extends ScreenAdapter {
     public void hide(){
         Gdx.input.setInputProcessor(null);
     }
+
+//    @Override
+//    public final void pause()
+//    {
+//        doPause();
+//    }
 }
