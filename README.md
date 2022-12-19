@@ -11,6 +11,10 @@ The basic functionality the game supports-
 3) A pause menu allows players to save, resume, or exit to the main menu at any point in the game.
 4) A player can save as well as load any saved game.
 
+DESIGN PATTERNS APPLIED-
+1)
+2)
+
 WORKING OF THE GAME-
 Various java classes have been implemented to make this game application.
 
