@@ -16,14 +16,14 @@ public class GameScreen extends ScreenAdapter {
     float touch_distance = 50;
 
     // Screen Input
-    float x_newgame = Gdx.graphics.getWidth() / 2 - 50;
-    float y_newgame = Gdx.graphics.getHeight() / 2 + 50;
+    float x_newgame =(float) Gdx.graphics.getWidth() / 2 - 50;
+    float y_newgame = (float)Gdx.graphics.getHeight() / 2 + 50;
 
-    float x_resume_game = Gdx.graphics.getWidth() / 2 - 50;
-    float y_resume_game = Gdx.graphics.getHeight() / 2;
+    float x_resume_game = (float)Gdx.graphics.getWidth() / 2 - 50;
+    float y_resume_game = (float)Gdx.graphics.getHeight() / 2;
 
-    float x_exit = Gdx.graphics.getWidth() / 2 - 50;
-    float y_exit = Gdx.graphics.getHeight() / 2 - 50;
+    float x_exit = (float)(Gdx.graphics.getWidth() / 2) - 50;
+    float y_exit = (float)Gdx.graphics.getHeight() / 2 - 50;
 
     boolean p = false;
 
@@ -71,20 +71,17 @@ public class GameScreen extends ScreenAdapter {
         game.font = new BitmapFont();
 
         // Game starting Screen
-        game.font.draw(game.batch, "New Game", Gdx.graphics.getWidth() / 2 - 50, Gdx.graphics.getHeight() / 2 + 50);
-        game.font.draw(game.batch, "Resume Game  ", Gdx.graphics.getWidth() / 2 - 50, Gdx.graphics.getHeight() / 2);
-        game.font.draw(game.batch, "Exit Game", Gdx.graphics.getWidth() / 2 - 50, Gdx.graphics.getHeight() / 2 - 50);
+        game.font.draw(game.batch, "New Game", (float)Gdx.graphics.getWidth() / 2 - 50, (float)Gdx.graphics.getHeight() / 2 + 50);
+        game.font.draw(game.batch, "Resume Game  ", (float)Gdx.graphics.getWidth() / 2 - 50, (float)Gdx.graphics.getHeight() / 2);
+        game.font.draw(game.batch, "Exit Game", (float)Gdx.graphics.getWidth() / 2 - 50, (float)Gdx.graphics.getHeight() / 2 - 50);
 
-        // while (p != true)
-        //     {
-        //         game.setScreen(new GameScreen(game));;
-        //     }
         game.batch.end();
 
     }
 
     @Override
-    public void hide() {
+    public void hide()
+    {
         Gdx.input.setInputProcessor(null);
     }
 }
