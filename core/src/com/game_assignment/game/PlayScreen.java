@@ -45,7 +45,7 @@ public class PlayScreen extends ScreenAdapter {
             @Override
             public boolean keyDown(int keyCode) {
                 if (keyCode == Input.Keys.SPACE) {
-                    flag = -1;
+//                    flag = -1;
                     game.setScreen(new PauseScreen(game,tankA,tankB));
                 }
 
@@ -55,7 +55,8 @@ public class PlayScreen extends ScreenAdapter {
     }
 
     @Override
-    public void render(float delta) {
+    public void render(float delta)
+    {
         Gdx.gl.glClearColor(0.150f, 0.2f, 255f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         game.batch.begin();
@@ -84,8 +85,6 @@ public class PlayScreen extends ScreenAdapter {
         game.batch.draw(tankA,tankA_X ,tankA_Y);
         game.batch.draw(tankB,tankB_X,tankB_Y);
         flag =0;
-        while(flag >= 0)
-        {
             if(flag == 0)
             {
 
@@ -123,8 +122,6 @@ public class PlayScreen extends ScreenAdapter {
                 {
                     range = (float) (((10*10)*MathUtils.sin(2*angle))/9.8);
                     height = (float) (((10*10)*((MathUtils.sin(angle))*MathUtils.sin(angle)))/(2*9.8));
-                    while (fireball_A_X != range)
-                    {
                         if(fireball_A_Y <= height)
                         {
                             fireball_A_X+=3;
@@ -136,7 +133,6 @@ public class PlayScreen extends ScreenAdapter {
                             fireball_A_Y-=3;
                         }
 
-                    }
                 }
                 flag = 1;
             }
@@ -149,15 +145,19 @@ public class PlayScreen extends ScreenAdapter {
                 }
                 flag = 0;
             }
+
+            if(Gdx.input.isKeyPressed(Input.Keys.SPACE))
+            {
+                flag= -1;
+            }
             game.font.draw(game.batch, "tank Player 1 ", hA, 395);
             game.font.draw(game.batch, "tank Player 2 ", hb, 395);
 
-        }
         game.batch.end();
         game.shapeRenderer.end();
     }
 
-    
+
 
     @Override
     public void hide(){
