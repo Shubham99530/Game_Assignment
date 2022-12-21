@@ -155,7 +155,7 @@ public class PlayScreen extends ScreenAdapter {
                         }
                         fireball_A_X += 10;
 
-                        fireball_A_Y = (float) ((fireball_A_X * Math.tan(a)) - ((9.8 * (fireball_A_X * fireball_A_X)) / (2 * (power * power * 100) * (Math.cos(a) * Math.cos(a))))) + 165;
+                        fireball_A_Y = gety(fireball_A_X,power,a) + 165;
 
                     } else {
                         flag = 1;
@@ -222,7 +222,7 @@ public class PlayScreen extends ScreenAdapter {
                         }
                         fireball_B_X -= 10;
 
-                        fireball_B_Y = (float) ((fireball_B_X * Math.tan(a)) - ((9.8 * (fireball_B_X * fireball_B_X)) / (2 * (power_b * power_b * 100) * (Math.cos(a) * Math.cos(a))))) + 165;
+                        fireball_B_Y = gety(fireball_B_X,power_b,a) + 165;
 
                     } else {
                         flag = 0;
@@ -242,6 +242,11 @@ public class PlayScreen extends ScreenAdapter {
         game.shapeRenderer.end();
     }
 
+    public float gety(float fireball_A , float power, double a)
+    {
+        float y =(float) ((fireball_A * Math.tan(a)) - ((9.8 * (fireball_A * fireball_A)) / (2 * (power * power * 100) * (Math.cos(a) * Math.cos(a)))));
+        return y;
+    }
     @Override
     public void hide(){
         Gdx.input.setInputProcessor(null);

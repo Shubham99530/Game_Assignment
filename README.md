@@ -10,8 +10,11 @@ The basic functionality the game supports-
 3) A pause menu allows players to save, resume, or exit to the main menu at any point in the game.
 
 DESIGN PATTERNS APPLIED-
-1) Bridge design pattern
-2)
+1) Bridge design pattern :
+    - We have used the object of the game class to bridge all the functionalities in the game assignment and the respective classes.
+    - the game class object works as a bridging object between the screen and other functionalities.
+2) Decorator design pattern :
+   - the Screen interface in being implemented by the game and the object extends the screen adaptor increasing the functionalities of the older object.
 
 WORKING OF THE GAME-
 Various java classes have been implemented to make this game application.
