@@ -76,6 +76,10 @@ project(":core") {
 
     sourceSets.test.java.srcDirs = ["test/"]
 
+    repositories {
+        mavenCentral()
+    }
+
     dependencies {
 
         implementation "com.badlogicgames.gdx:gdx:$gdxVersion"
@@ -83,11 +87,16 @@ project(":core") {
         implementation "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
         implementation fileTree(dir: 'libs', include: '*.jar')
 
-        testImplementation "junit:junit:4.11"
+        testImplementation "junit:junit:4.13.2"
         testImplementation "com.badlogicgames.gdx:gdx-backend-headless:$gdxVersion"
         testImplementation "com.badlogicgames.gdx:gdx:$gdxVersion"
         testImplementation "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
         testImplementation "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
         testImplementation "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-desktop"
+    }
+
+
+    test{
+        useJUnitPlatform()
     }
 }
