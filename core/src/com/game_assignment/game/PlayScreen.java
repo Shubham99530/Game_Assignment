@@ -24,15 +24,20 @@ public class PlayScreen extends ScreenAdapter {
     private int flag =0;
     private float fireball_A_X = tankA_X+100;
     private float fireball_A_Y = tankA_Y+100;
+
     private float x = fireball_A_X;
     private float y =fireball_A_Y;
 
     private float power =0;
     private float angle = 0;
+    private float power_b =0;
+    private float angle_b = 0;
     private float height = 0;
     private float range = 0;
     private float tankB_X=600-tankA_X;
     private float tankB_Y=tankA_Y;
+    private float fireball_B_X = tankB_X-100;
+    private float fireball_B_Y = tankB_Y+100;
     private double a =0;
     private float hA = tankA_X;
     private float hb = tankB_X;
@@ -80,11 +85,15 @@ public class PlayScreen extends ScreenAdapter {
         game.shapeRenderer.setColor(1,0,0,1);
         game.shapeRenderer.circle(fireball_A_X,fireball_A_Y,10);
 
+        game.shapeRenderer.setColor(1,0,0,1);
+        game.shapeRenderer.circle(fireball_B_X,fireball_B_Y,10);
+
         game.font.draw(game.batch,"Tank Player 1 turn" , hA + 100, 395 );
         game.font.draw(game.batch,"Fuel ", hA,350);
+        game.font.draw(game.batch,"Fuel ", hb,350);
 
         game.font.draw(game.batch,"Angle of Projection :  "+angle, 150,120);
-        game.font.draw(game.batch,"Power of Attack :" + power, 650, 120);
+        game.font.draw(game.batch,"Power of Attack :" + power, 400, 120);
 
         game.batch.draw(tankA,tankA_X ,tankA_Y);
         game.batch.draw(tankB,tankB_X,tankB_Y);
@@ -152,7 +161,7 @@ public class PlayScreen extends ScreenAdapter {
                     } else {
                         flag = 1;
                     }
-//
+
                 }
             }
             else if(flag == 1)
@@ -162,7 +171,54 @@ public class PlayScreen extends ScreenAdapter {
                 } else if (Gdx.input.isKeyPressed(Input.Keys.DPAD_RIGHT)) {
                     tankB_X += 3;
                 }
-//                flag = 0;
+                else if(Gdx.input.isKeyPressed(Input.Keys.W))
+                {
+                    if (angle_b <90) {
+                        angle_b += 5;
+                    }
+                }
+
+                else if (Gdx.input.isKeyPressed(Input.Keys.S))
+                {
+                    if (angle_b>0)
+                    {
+                        angle_b -= 5;
+                    }
+                }
+
+                if (Gdx.input.isKeyPressed(Input.Keys.DPAD_UP))
+                {
+                    if(power_b <50f)
+                    {
+                        power_b+=1;
+                    }
+                }
+                else if(Gdx.input.isKeyPressed(Input.Keys.DPAD_DOWN))
+                {
+                    if (power_b > 0)
+                    {
+                        power_b-=1;
+                    }
+                }
+                if (Gdx.input.isKeyPressed(Input.Keys.ENTER)) {
+                    a = Math.toRadians(angle);
+
+                    range = (float) ((power_b * power_b * 100) * (Math.sin(2 * a)) / 9.8) + x; //x ?
+                    height = (float) ((10000) * (Math.sin(a) * Math.sin(a)) / 2 * 9.8);
+                    if (fireball_B_X < range) {
+
+                        if (fireball_B_X < tankA_X - 50 && fireball_B_Y < tankA_Y - 50) {
+                            flag = 0;
+                        }
+                        fireball_B_X += 10;
+
+                        fireball_B_Y = (float) ((fireball_B_X * Math.tan(a)) - ((9.8 * (fireball_B_X * fireball_B_X)) / (2 * (power_b * power_b * 100) * (Math.cos(a) * Math.cos(a))))) + 165;
+
+                    } else {
+                        flag = 0;
+                    }
+//
+                }
             }
 
             if(Gdx.input.isKeyPressed(Input.Keys.SPACE))
@@ -175,11 +231,7 @@ public class PlayScreen extends ScreenAdapter {
         game.batch.end();
         game.shapeRenderer.end();
     }
-//    public float fireball(float fireball_A_X, float power)
-//    {
-//        float y =(float) ((fireball_A_X * Math.tan(a)) - ((9.8 * (fireball_A_X * fireball_A_X)) / (2 * (power*power*10) * (Math.cos(a) * Math.cos(a)))));
-//        return y;
-//    }
+
     @Override
     public void hide(){
         Gdx.input.setInputProcessor(null);
