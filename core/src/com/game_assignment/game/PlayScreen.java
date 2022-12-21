@@ -21,12 +21,13 @@ public class PlayScreen extends ScreenAdapter {
     private float tankA_Y = 65 ;
 
     private float f=150;
+    private float q =150;
     private int flag =0;
     private float fireball_A_X = tankA_X+100;
     private float fireball_A_Y = tankA_Y+100;
 
-    private float x = fireball_A_X;
-    private float y =fireball_A_Y;
+    private float xA = tankA_X+100;
+    private float yA = 165;
 
     private float power =0;
     private float angle = 0;
@@ -36,8 +37,10 @@ public class PlayScreen extends ScreenAdapter {
     private float range = 0;
     private float tankB_X=600-tankA_X;
     private float tankB_Y=tankA_Y;
-    private float fireball_B_X = tankB_X-100;
+    private float fireball_B_X = tankB_X;
     private float fireball_B_Y = tankB_Y+100;
+    private float xB = tankB_X;
+    private float yB =fireball_B_X;
     private double a =0;
     private float hA = tankA_X;
     private float hb = tankB_X;
@@ -77,28 +80,24 @@ public class PlayScreen extends ScreenAdapter {
         game.shapeRenderer.rect(hA, 400, 200 ,10);
         game.shapeRenderer.rect(hb,400,200,10);
 
-
-
-        game.shapeRenderer.setColor(1,0,1,1);
-        game.shapeRenderer.rect(hA,345,f,10);
-
-        game.shapeRenderer.setColor(1,0,0,1);
-        game.shapeRenderer.circle(fireball_A_X,fireball_A_Y,10);
-
-        game.shapeRenderer.setColor(1,0,0,1);
-        game.shapeRenderer.circle(fireball_B_X,fireball_B_Y,10);
-
         game.font.draw(game.batch,"Tank Player 1 turn" , hA + 100, 395 );
         game.font.draw(game.batch,"Fuel ", hA,350);
         game.font.draw(game.batch,"Fuel ", hb,350);
 
-        game.font.draw(game.batch,"Angle of Projection :  "+angle, 150,120);
-        game.font.draw(game.batch,"Power of Attack :" + power, 400, 120);
+        game.font.draw(game.batch,"Angle of Projection :  "+angle, 150,600);
+        game.font.draw(game.batch,"Power of Attack :" + power, 400, 600);
 
         game.batch.draw(tankA,tankA_X ,tankA_Y);
         game.batch.draw(tankB,tankB_X,tankB_Y);
             if(flag == 0)
             {
+                f =q;
+//                fireball_A_X = xA;
+                game.shapeRenderer.setColor(1,0,1,1);
+                game.shapeRenderer.rect(hA,345,f,10);
+
+                game.shapeRenderer.setColor(1,0,0,1);
+                game.shapeRenderer.circle(fireball_A_X,fireball_A_Y,10);
 
                 if (Gdx.input.isKeyPressed(Input.Keys.A)) {
                     if(f > 0)
@@ -147,7 +146,7 @@ public class PlayScreen extends ScreenAdapter {
                 if (Gdx.input.isKeyPressed(Input.Keys.ENTER)) {
                     a = Math.toRadians(angle);
 
-                    range = (float) ((power * power * 100) * (Math.sin(2 * a)) / 9.8) + x;
+                    range = (float) ((power * power * 100) * (Math.sin(2 * a)) / 9.8) + xA;
                     height = (float) ((10000) * (Math.sin(a) * Math.sin(a)) / 2 * 9.8);
                     if (fireball_A_X < range) {
 
@@ -166,10 +165,21 @@ public class PlayScreen extends ScreenAdapter {
             }
             else if(flag == 1)
             {
+                f=q;
+//                fireball_B_X = xB;
+                game.shapeRenderer.setColor(1,0,1,1);
+                game.shapeRenderer.rect(hb,345,f,10);
+
+                game.shapeRenderer.setColor(1,0,0,1);
+                game.shapeRenderer.circle(fireball_B_X,fireball_B_Y,10);
+
+
                 if (Gdx.input.isKeyPressed(Input.Keys.DPAD_LEFT)) {
                     tankB_X -= 3;
+                    f-=1;
                 } else if (Gdx.input.isKeyPressed(Input.Keys.DPAD_RIGHT)) {
                     tankB_X += 3;
+                    f-=1;
                 }
                 else if(Gdx.input.isKeyPressed(Input.Keys.W))
                 {
@@ -203,14 +213,14 @@ public class PlayScreen extends ScreenAdapter {
                 if (Gdx.input.isKeyPressed(Input.Keys.ENTER)) {
                     a = Math.toRadians(angle);
 
-                    range = (float) ((power_b * power_b * 100) * (Math.sin(2 * a)) / 9.8) + x; //x ?
+                    range = -(float) ((power_b * power_b * 100) * (Math.sin(2 * a)) / 9.8) + xB; //x ?
                     height = (float) ((10000) * (Math.sin(a) * Math.sin(a)) / 2 * 9.8);
-                    if (fireball_B_X < range) {
+                    if (fireball_B_X > range) {
 
                         if (fireball_B_X < tankA_X - 50 && fireball_B_Y < tankA_Y - 50) {
                             flag = 0;
                         }
-                        fireball_B_X += 10;
+                        fireball_B_X -= 10;
 
                         fireball_B_Y = (float) ((fireball_B_X * Math.tan(a)) - ((9.8 * (fireball_B_X * fireball_B_X)) / (2 * (power_b * power_b * 100) * (Math.cos(a) * Math.cos(a))))) + 165;
 
