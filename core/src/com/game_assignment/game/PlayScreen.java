@@ -118,11 +118,11 @@ public class PlayScreen extends ScreenAdapter {
                 if (Gdx.input.isKeyPressed(Input.Keys.ENTER))
                 {
                     a= Math.toRadians(angle);
-                    range = (float) ((10*10)*(Math.sin(2*a))/9.8) + x;
+                    range = (float) ((100*100)*(Math.sin(2*a))/9.8) +x ;
                     if(fireball_A_X <= range) {
-                        fireball_A_X += 10;
+                        fireball_A_X += 1;
                     }
-                    fireball_A_Y = (float) ((fireball_A_X*Math.tan(a))-((9.8*(fireball_A_X*fireball_A_X))/(2*(100)*(Math.cos(a)*Math.cos(a))))) + fireball_A_Y;
+                    fireball_A_Y = (float) ((fireball_A_X*Math.tan(a))-((9.8*(fireball_A_X*fireball_A_X))/(2*(10000)*(Math.cos(a)*Math.cos(a))))) + fireball_A_Y;
 
                 }
                 flag = 1;
