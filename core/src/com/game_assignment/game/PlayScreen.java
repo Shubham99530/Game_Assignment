@@ -28,7 +28,7 @@ public class PlayScreen extends ScreenAdapter {
     float range = 0;
     float tankB_X=600-tankA_X;
     float tankB_Y=tankA_Y;
-
+    double a =0;
     float hA = tankA_X;
      float hb = tankB_X;
 
@@ -115,14 +115,14 @@ public class PlayScreen extends ScreenAdapter {
                         angle -= 5;
                     }
                 }
-
                 if (Gdx.input.isKeyPressed(Input.Keys.ENTER))
                 {
-                    range = (float) ((100*100)*(Math.sin(2*angle))/9.8) + x;
+                    a= Math.toRadians(angle);
+                    range = (float) ((10*10)*(Math.sin(2*a))/9.8) + x;
                     if(fireball_A_X <= range) {
-                        fireball_A_X += 1f;
+                        fireball_A_X += 10;
                     }
-                    fireball_A_Y += (float) ((fireball_A_X*Math.tan(angle))-((9.8*(fireball_A_X*fireball_A_X))/(2*(10000)*(Math.cos(angle)*Math.cos(angle)))));
+                    fireball_A_Y = (float) ((fireball_A_X*Math.tan(a))-((9.8*(fireball_A_X*fireball_A_X))/(2*(100)*(Math.cos(a)*Math.cos(a))))) + fireball_A_Y;
 
                 }
                 flag = 1;
