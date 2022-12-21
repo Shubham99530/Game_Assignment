@@ -1,6 +1,5 @@
 package com.game_assignment.game;
 
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
@@ -21,9 +20,9 @@ public class PlayScreen extends ScreenAdapter {
 
     float f=150;
     int flag =0;
-    float fireball_A_X = tankA_X;
-    float fireball_A_Y = tankA_Y;
-
+    float fireball_A_X = tankA_X+100;
+    float fireball_A_Y = tankA_Y+100;
+    float x = fireball_A_X;
     float angle = 0;
     float height = 0;
     float range = 0;
@@ -45,7 +44,7 @@ public class PlayScreen extends ScreenAdapter {
             @Override
             public boolean keyDown(int keyCode) {
                 if (keyCode == Input.Keys.SPACE) {
-//                    flag = -1;
+                    flag = -1;
                     game.setScreen(new PauseScreen(game,tankA,tankB));
                 }
 
@@ -70,21 +69,20 @@ public class PlayScreen extends ScreenAdapter {
 
 
 
-        game.shapeRenderer.setColor(0,0,1,1);
+        game.shapeRenderer.setColor(1,0,1,1);
         game.shapeRenderer.rect(hA,345,f,10);
 
         game.shapeRenderer.setColor(1,0,0,1);
         game.shapeRenderer.circle(fireball_A_X,fireball_A_Y,10);
 
-        game.font.draw(game.batch,"Tank Player 1 turn" , hA + 50, 395 );
+        game.font.draw(game.batch,"Tank Player 1 turn" , hA + 100, 395 );
         game.font.draw(game.batch,"Fuel ", hA,350);
 
-        game.font.draw(game.batch,"Angle of Projection :  "+angle, 50,50);
+        game.font.draw(game.batch,"Angle of Projection :  "+angle, 150,200);
 
 
         game.batch.draw(tankA,tankA_X ,tankA_Y);
         game.batch.draw(tankB,tankB_X,tankB_Y);
-        flag =0;
             if(flag == 0)
             {
 
@@ -92,21 +90,21 @@ public class PlayScreen extends ScreenAdapter {
                     if(f > 0)
                     {
                         tankA_X -= 3;
-                        f -=20;
+                        f -=1;
                     }
                 }
                 else if (Gdx.input.isKeyPressed(Input.Keys.D)) {
                     if(f > 0)
                     {
                         tankA_X += 3;
-                        f -=20;
+                        f -=1;
                     }
                 }
 
                 else if(Gdx.input.isKeyPressed(Input.Keys.W))
                 {
                     if (angle <90) {
-                        angle += 10;
+                        angle += 5;
                     }
                 }
 
@@ -114,24 +112,17 @@ public class PlayScreen extends ScreenAdapter {
                 {
                     if (angle>0)
                     {
-                        angle -= 10;
+                        angle -= 5;
                     }
                 }
 
                 if (Gdx.input.isKeyPressed(Input.Keys.ENTER))
                 {
-                    range = (float) (((10*10)*MathUtils.sin(2*angle))/9.8);
-                    height = (float) (((10*10)*((MathUtils.sin(angle))*MathUtils.sin(angle)))/(2*9.8));
-                        if(fireball_A_Y <= height)
-                        {
-                            fireball_A_X+=3;
-                            fireball_A_Y+=3;
-                        }
-                        else
-                        {
-                            fireball_A_X+=3;
-                            fireball_A_Y-=3;
-                        }
+                    range = (float) ((100*100)*(Math.sin(2*angle))/9.8) + x;
+                    if(fireball_A_X <= range) {
+                        fireball_A_X += 1f;
+                    }
+                    fireball_A_Y += (float) ((fireball_A_X*Math.tan(angle))-((9.8*(fireball_A_X*fireball_A_X))/(2*(10000)*(Math.cos(angle)*Math.cos(angle)))));
 
                 }
                 flag = 1;
